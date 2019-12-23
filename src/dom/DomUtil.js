@@ -69,7 +69,7 @@ export function create(tagName, className, container) {
 // @function remove(el: HTMLElement)
 // Removes `el` from its parent element
 export function remove(el) {
-	var parent = el.parentNode;
+	var parent = el && el.parentNode;
 	if (parent) {
 		parent.removeChild(el);
 	}

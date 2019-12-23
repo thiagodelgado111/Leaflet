@@ -25,12 +25,12 @@ git commit -m "v$VERSION"
 git tag v$VERSION -f
 git push --tags -f
 
-echo "Uploading to NPM..."
+# echo "Uploading to NPM..."
 
-npm publish
+# npm publish
 
-git checkout master
-git branch -D build
+# git checkout master
+# git branch -D build
 
 echo "All done."
-echo "Remember to run 'npm run-script integrity' and then commit the changes to the master branch, in order to update the website."
+# echo "Remember to run 'npm run-script integrity' and then commit the changes to the master branch, in order to update the website."

@@ -80,6 +80,9 @@ export var Layer = Evented.extend({
 	},
 
 	removeInteractiveTarget: function (targetEl) {
+		if (!this._map) {
+			return this;
+		}
 		delete this._map._targets[Util.stamp(targetEl)];
 		return this;
 	},
