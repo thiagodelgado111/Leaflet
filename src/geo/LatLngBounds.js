@@ -175,7 +175,7 @@ LatLngBounds.prototype = {
 			sw2 = ne2 = obj;
 		}
 
-		return (sw2.lat >= sw.lat) && (ne2.lat <= ne.lat) &&
+		return sw && ne && sw2 && ne2 && (sw2.lat >= sw.lat) && (ne2.lat <= ne.lat) &&
 		       (sw2.lng >= sw.lng) && (ne2.lng <= ne.lng);
 	},
 
@@ -189,8 +189,8 @@ LatLngBounds.prototype = {
 		    sw2 = bounds.getSouthWest(),
 		    ne2 = bounds.getNorthEast(),
 
-		    latIntersects = (ne2.lat >= sw.lat) && (sw2.lat <= ne.lat),
-		    lngIntersects = (ne2.lng >= sw.lng) && (sw2.lng <= ne.lng);
+		    latIntersects = sw && ne && sw2 && ne2 && (ne2.lat >= sw.lat) && (sw2.lat <= ne.lat),
+		    lngIntersects = sw && ne && sw2 && ne2 && (ne2.lng >= sw.lng) && (sw2.lng <= ne.lng);
 
 		return latIntersects && lngIntersects;
 	},
@@ -205,8 +205,8 @@ LatLngBounds.prototype = {
 		    sw2 = bounds.getSouthWest(),
 		    ne2 = bounds.getNorthEast(),
 
-		    latOverlaps = (ne2.lat > sw.lat) && (sw2.lat < ne.lat),
-		    lngOverlaps = (ne2.lng > sw.lng) && (sw2.lng < ne.lng);
+		    latOverlaps = sw && ne && sw2 && ne2 && (ne2.lat > sw.lat) && (sw2.lat < ne.lat),
+		    lngOverlaps = sw && ne && sw2 && ne2 && (ne2.lng > sw.lng) && (sw2.lng < ne.lng);
 
 		return latOverlaps && lngOverlaps;
 	},
