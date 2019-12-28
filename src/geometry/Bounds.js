@@ -116,7 +116,11 @@ Bounds.prototype = {
 			min = max = obj;
 		}
 
-		return (min.x >= this.min.x) &&
+		return min &&
+           max &&
+           this.min &&
+           this.max &&
+           (min.x >= this.min.x) &&
 		       (max.x <= this.max.x) &&
 		       (min.y >= this.min.y) &&
 		       (max.y <= this.max.y);
@@ -132,8 +136,8 @@ Bounds.prototype = {
 		    max = this.max,
 		    min2 = bounds.min,
 		    max2 = bounds.max,
-		    xIntersects = (max2.x >= min.x) && (min2.x <= max.x),
-		    yIntersects = (max2.y >= min.y) && (min2.y <= max.y);
+		    xIntersects = max && min && max2 && min2 && (max2.x >= min.x) && (min2.x <= max.x),
+		    yIntersects = max && min && max2 && min2 && (max2.y >= min.y) && (min2.y <= max.y);
 
 		return xIntersects && yIntersects;
 	},
@@ -148,8 +152,8 @@ Bounds.prototype = {
 		    max = this.max,
 		    min2 = bounds.min,
 		    max2 = bounds.max,
-		    xOverlaps = (max2.x > min.x) && (min2.x < max.x),
-		    yOverlaps = (max2.y > min.y) && (min2.y < max.y);
+		    xOverlaps = max && min && max2 && min2 && (max2.x > min.x) && (min2.x < max.x),
+		    yOverlaps = max && min && max2 && min2 && (max2.y > min.y) && (min2.y < max.y);
 
 		return xOverlaps && yOverlaps;
 	},

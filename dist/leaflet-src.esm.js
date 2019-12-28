@@ -1,9 +1,9 @@
 /* @preserve
- * Leaflet 1.6.0, a JS library for interactive maps. http://leafletjs.com
+ * Leaflet 1.6.0+build.56594d6, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2019 Vladimir Agafonkin, (c) 2010-2011 CloudMade
  */
 
-var version = "1.6.0";
+var version = "1.6.0+build.56594d6e";
 
 /*
  * @namespace Util
@@ -1028,7 +1028,11 @@ Bounds.prototype = {
 			min = max = obj;
 		}
 
-		return (min.x >= this.min.x) &&
+		return min &&
+           max &&
+           this.min &&
+           this.max &&
+           (min.x >= this.min.x) &&
 		       (max.x <= this.max.x) &&
 		       (min.y >= this.min.y) &&
 		       (max.y <= this.max.y);
@@ -1259,7 +1263,7 @@ LatLngBounds.prototype = {
 			sw2 = ne2 = obj;
 		}
 
-		return (sw2.lat >= sw.lat) && (ne2.lat <= ne.lat) &&
+		return sw && ne && sw2 && ne2 && (sw2.lat >= sw.lat) && (ne2.lat <= ne.lat) &&
 		       (sw2.lng >= sw.lng) && (ne2.lng <= ne.lng);
 	},
 
@@ -1273,8 +1277,8 @@ LatLngBounds.prototype = {
 		    sw2 = bounds.getSouthWest(),
 		    ne2 = bounds.getNorthEast(),
 
-		    latIntersects = (ne2.lat >= sw.lat) && (sw2.lat <= ne.lat),
-		    lngIntersects = (ne2.lng >= sw.lng) && (sw2.lng <= ne.lng);
+		    latIntersects = sw && ne && sw2 && ne2 && (ne2.lat >= sw.lat) && (sw2.lat <= ne.lat),
+		    lngIntersects = sw && ne && sw2 && ne2 && (ne2.lng >= sw.lng) && (sw2.lng <= ne.lng);
 
 		return latIntersects && lngIntersects;
 	},
@@ -1289,8 +1293,8 @@ LatLngBounds.prototype = {
 		    sw2 = bounds.getSouthWest(),
 		    ne2 = bounds.getNorthEast(),
 
-		    latOverlaps = (ne2.lat > sw.lat) && (sw2.lat < ne.lat),
-		    lngOverlaps = (ne2.lng > sw.lng) && (sw2.lng < ne.lng);
+		    latOverlaps = sw && ne && sw2 && ne2 && (ne2.lat > sw.lat) && (sw2.lat < ne.lat),
+		    lngOverlaps = sw && ne && sw2 && ne2 && (ne2.lng > sw.lng) && (sw2.lng < ne.lng);
 
 		return latOverlaps && lngOverlaps;
 	},
