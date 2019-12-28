@@ -87,7 +87,9 @@ export var Path = Layer.extend({
 	},
 
 	onRemove: function () {
-		this._renderer._removePath(this);
+		if (this._renderer) {
+			this._renderer._removePath(this);
+		}
 	},
 
 	// @method redraw(): this
